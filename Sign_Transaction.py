@@ -107,12 +107,4 @@ if __name__ == "__main__":
 	else:
 		print(f"Usage {sys.argv[0]} <seedHex> <TransactionHex>")
 
-
-b7df4ff41624ef099703729b5b97f3940b9a89a03db3a6e5e6d5179f65278c9d
-
-
-
-
-
-
-
+		
