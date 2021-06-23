@@ -93,7 +93,7 @@ def Sign_Transaction(seedHex, TransactionHex):
 	r = kpX % n
 	s = pow(k, -1, n) * (r * int(seedHex, 16)+int(s256.hex(), 16))
 	s = s % n
-	signature = to_DER(hex(r)[2:], hex(s)[2:])
+	signature = to_DER(hex(r)[2:].zfill(64), hex(s)[2:].zfill(64))
 	signed_transaction = TransactionHex[:-2] + hex(len(bytearray.fromhex(signature)))[2:] + signature
 	return signed_transaction
 
@@ -107,4 +107,3 @@ if __name__ == "__main__":
 	else:
 		print(f"Usage {sys.argv[0]} <seedHex> <TransactionHex>")
 
-		
