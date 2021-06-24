@@ -69,13 +69,12 @@ def scalar_mult(k, point):
     return result
 
 #######
-
 def to_DER(r, s): # Signature to DER format
 	r = bytes.fromhex(r)
 	s = bytes.fromhex(s)
-	if r[0] > 0x80:
+	if r[0] >= 0x80:
 		r = bytes.fromhex("00")+r
-	if s[0] > 0x80:
+	if s[0] >= 0x80:
 		s = bytes.fromhex("00")+s
 	res = bytes.fromhex("02"+hex(len(r))[2:]) + r + bytes.fromhex("02"+hex(len(s))[2:]) + s
 	res = bytes.fromhex("30"+hex(len(res))[2:]) + res
