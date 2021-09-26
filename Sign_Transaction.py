@@ -81,6 +81,11 @@ def to_DER(r, s): # Signature to DER format
 
 	return res.hex()
 
+def hexify(n):
+	n = hex(n)[2:]
+	if len(n)%2 != 0:
+		n = "0"+n
+	return n
 
 
 def Sign_Transaction(seedHex, TransactionHex):
@@ -92,7 +97,7 @@ def Sign_Transaction(seedHex, TransactionHex):
 	r = kpX % n
 	s = pow(k, -1, n) * (r * int(seedHex, 16)+int(s256.hex(), 16))
 	s = s % n
-	signature = to_DER(hex(r)[2:].zfill(64), hex(s)[2:].zfill(64))
+	signature = to_DER(hexify(r), hexify(s))
 	signed_transaction = TransactionHex[:-2] + hex(len(bytearray.fromhex(signature)))[2:] + signature
 	return signed_transaction
 
